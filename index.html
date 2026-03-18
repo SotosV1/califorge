@@ -520,12 +520,16 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .guide-example-day{color:var(--white);font-weight:400;}
 .guide-example-val{color:var(--muted);}
 .guide-cta-box{background:linear-gradient(135deg,rgba(200,245,66,.06) 0%,transparent 100%);border:1px solid rgba(200,245,66,.2);border-radius:16px;padding:36px;text-align:center;margin-top:52px;}
-.guide-cta-title{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px;}
-.guide-cta-sub{font-family:var(--fm);font-size:12px;color:var(--muted);margin-bottom:24px;}
-@media(max-width:600px){.guide-title{font-size:clamp(32px,8vw,52px);}}
-/* HERO ATHLETE FIGURE */
-.hero-figure{position:absolute;right:-30px;bottom:0;width:clamp(280px,38vw,520px);pointer-events:none;z-index:1;opacity:0.88;filter:drop-shadow(0 0 40px rgba(200,245,66,0.18));}
-@media(max-width:860px){.hero-figure{display:none;}}
+/* HERO FORGE CORE (Abstract 3D Geometric Logo) */
+.hero-core{position:absolute;right:0;bottom:40px;width:clamp(260px,35vw,460px);height:clamp(260px,35vw,460px);pointer-events:none;z-index:1;display:flex;align-items:center;justify-content:center;}
+.hc-ring{position:absolute;inset:0;border:1px solid rgba(200,245,66,.2);border-radius:50%;border-top-color:rgba(200,245,66,.8);border-bottom-color:rgba(200,245,66,.8);animation:hcSpin 20s linear infinite;}
+.hc-ring.r2{inset:20px;border-width:2px;border-color:rgba(200,245,66,.1);border-left-color:var(--accent);border-right-color:var(--accent);animation-direction:reverse;animation-duration:15s;}
+.hc-ring.r3{inset:45px;border:1px dashed rgba(200,245,66,.4);animation-duration:25s;}
+.hc-poly{position:absolute;width:60%;height:60%;color:var(--accent);filter:drop-shadow(0 0 30px rgba(200,245,66,0.3));animation:hcPulse 4s ease-in-out infinite alternate, hcSpin 30s linear infinite;}
+.hc-glow{position:absolute;inset:-50px;background:radial-gradient(circle, rgba(200,245,66,0.08) 0%, transparent 60%);z-index:-1;}
+@keyframes hcSpin{from{transform:rotate(0deg) scale(1);}to{transform:rotate(360deg) scale(1);}}
+@keyframes hcPulse{from{transform:scale(0.95) rotate(0deg);}to{transform:scale(1.05) rotate(10deg);}}
+@media(max-width:860px){.hero-core{display:none;}}
 </style>
 </head>
 <body>
@@ -616,160 +620,21 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
       <button class="h-cta" onclick="goToQuiz()"><span>Let's build it! 🚀</span><span class="h-arr">↗</span></button>
       <div class="h-scroll"><div class="s-line"></div><div class="s-txt">Scroll</div></div>
     </div>
-    <!-- DETAILED REALISTIC LIME ATHLETE -->
-    <svg class="hero-figure" viewBox="0 0 500 700" fill="none" xmlns="http://www.w3.org/2000/svg" style="bottom:-20px; right:-80px;">
-      <!-- Ambient Glow -->
-      <ellipse cx="250" cy="350" rx="150" ry="250" fill="#c8f542" opacity="0.04" filter="blur(30px)"/>
-      <ellipse cx="250" cy="500" rx="120" ry="120" fill="#c8f542" opacity="0.08" filter="blur(40px)"/>
-
-      <g stroke="#05050a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-        
-        <!-- BASE SKIN TONE (LIME) -->
-        <path d="M225 35 
-                 C245 25, 275 35, 280 65 
-                 C282 80, 278 115, 270 125 
-                 C265 130, 255 138, 255 145 
-                 C260 160, 285 180, 295 185
-                 C330 200, 345 230, 360 270
-                 C365 310, 345 340, 335 345
-                 C328 350, 310 330, 310 330
-                 C310 330, 290 320, 280 320
-                 C275 330, 290 365, 300 395
-                 C310 425, 320 480, 325 500
-                 L295 540 L160 540 
-                 C155 490, 160 450, 165 410
-                 C170 370, 165 330, 150 280
-                 C140 240, 120 220, 130 180
-                 C140 160, 165 180, 180 165
-                 C195 150, 220 145, 225 125
-                 C230 110, 235 75, 225 50
-                 C220 40, 225 35, 225 35 Z" fill="#c8f542"/>
-
-        <!-- DARK SHADING ZONES (Shadows) -->
-        <path d="M225 35 C235 45, 240 70, 230 100 C220 120, 215 135, 225 125 Z" fill="#9dbf32" opacity="0.6"/>
-        <path d="M270 125 C265 140, 250 155, 240 180 L255 145 Z" fill="#9dbf32" opacity="0.6"/>
-        
-        <!-- HEAD MASK DETAILS -->
-        <!-- Eyes -->
-        <path d="M235 75 L245 70 L250 72 L240 78 Z" fill="#f0eee8"/>
-        <path d="M255 72 L268 70 L273 73 L260 76 Z" fill="#f0eee8"/>
-        <!-- Mask seam -->
-        <path d="M252 35 C255 50, 253 100, 260 128" fill="none" opacity="0.5"/>
-        <!-- Jaw hinge shadow -->
-        <path d="M280 65 C275 75, 268 110, 260 128" stroke-width="1.5" opacity="0.4" fill="none"/>
-
-        <!-- NECK & TRAPS -->
-        <!-- SCM (Neck muscle) -->
-        <path d="M225 125 C230 145, 240 160, 250 170" fill="none" opacity="0.7"/>
-        <path d="M270 125 C265 145, 260 160, 250 170" fill="none" opacity="0.7"/>
-        <path d="M225 145 C210 160, 180 170, 180 165" fill="none" opacity="0.6"/>
-        <path d="M255 145 C270 160, 290 180, 295 185" fill="none" opacity="0.6"/>
-
-        <!-- CHEST (PECS) -->
-        <!-- Left Pec outline/shadow -->
-        <path d="M250 170 C240 190, 230 250, 245 285 C235 295, 200 290, 175 275 C165 240, 185 190, 195 180 L250 170 Z" fill="#add137" opacity="0.3"/>
-        <path d="M245 285 C225 290, 185 285, 175 275" fill="none"/>
-        <path d="M250 170 C245 200, 235 250, 245 285" fill="none"/>
-        <!-- Right Pec outline/shadow -->
-        <path d="M250 170 C258 190, 265 250, 255 285 C270 295, 305 285, 320 265 C325 230, 310 190, 295 185 L250 170 Z" fill="#add137" opacity="0.3"/>
-        <path d="M255 285 C280 290, 310 275, 320 265" fill="none"/>
-        <path d="M250 170 C255 200, 265 250, 255 285" fill="none"/>
-        
-        <!-- ABS (SIX PACK) -->
-        <!-- Abs center linea alba -->
-        <path d="M250 286 C255 310, 252 350, 248 405" fill="none" stroke-width="2"/>
-        <!-- Top row abs -->
-        <path d="M245 286 C225 300, 215 315, 222 335 C235 340, 248 335, 252 335" fill="none"/>
-        <path d="M255 286 C275 300, 285 310, 280 330 C270 335, 258 335, 252 335" fill="none"/>
-        <!-- Mid row abs -->
-        <path d="M222 335 C215 345, 218 365, 225 375 C235 380, 245 375, 250 375" fill="none"/>
-        <path d="M280 330 C285 340, 280 365, 275 375 C265 378, 255 375, 250 375" fill="none"/>
-        <!-- Bottom row abs -->
-        <path d="M225 375 C220 385, 230 405, 240 408 L248 405" fill="none"/>
-        <path d="M275 375 C280 385, 265 405, 255 408 L248 405" fill="none"/>
-
-        <!-- SERRATUS & OBLIQUES (RIBS/SIDE) -->
-        <!-- Left side -->
-        <path d="M175 275 C165 300, 160 320, 175 350" fill="none"/>
-        <path d="M175 285 C190 295, 205 295, 215 285" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M172 305 C185 315, 205 320, 215 315" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M168 325 C185 335, 200 340, 215 330" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M175 350 C185 370, 200 390, 220 402" fill="none" opacity="0.6"/>
-        
-        <!-- Right side -->
-        <path d="M320 265 C325 290, 318 320, 305 345" fill="none"/>
-        <path d="M320 275 C305 290, 290 290, 285 285" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M318 295 C300 305, 285 310, 280 305" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M312 315 C295 325, 285 330, 280 325" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <path d="M305 345 C295 365, 280 385, 265 402" fill="none" opacity="0.6"/>
-
-        <!-- DELTS & SHOULDERS -->
-        <!-- Left Deltoid -->
-        <path d="M180 165 C160 170, 140 190, 130 220 C150 240, 170 230, 175 220 L180 165 Z" fill="#add137" opacity="0.4"/>
-        <path d="M180 165 C160 170, 135 190, 130 225" fill="none"/>
-        <path d="M130 225 C145 235, 165 230, 175 220" fill="none"/>
-        <path d="M150 180 C155 200, 160 215, 172 218" fill="none" stroke-width="1.5" opacity="0.5"/>
-        
-        <!-- Right Deltoid -->
-        <path d="M295 185 C315 190, 335 205, 345 235 C325 245, 305 240, 298 230 L295 185 Z" fill="#add137" opacity="0.4"/>
-        <path d="M295 185 C315 190, 335 205, 345 235" fill="none"/>
-        <path d="M345 235 C325 245, 305 240, 298 230" fill="none"/>
-        <path d="M325 195 C320 215, 315 225, 305 228" fill="none" stroke-width="1.5" opacity="0.5"/>
-        
-        <!-- BICEPS / TRICEPS (LEFT BARE ARM) -->
-        <path d="M130 225 C120 250, 115 270, 125 300 C135 325, 145 330, 150 330" fill="none"/>
-        <path d="M175 220 C165 260, 170 290, 180 320" fill="none"/>
-        <!-- Bicep peak line -->
-        <path d="M135 265 C145 275, 160 270, 168 255" fill="none" stroke-width="1.5" opacity="0.6"/>
-        <path d="M145 302 C155 310, 165 315, 175 310" fill="none" stroke-width="1.5" opacity="0.6"/>
-
-        <!-- RIGHT ARM (DARK SLEEVE COMPRESSION) -->
-        <path d="M295 240 C320 255, 360 280, 360 280 C365 315, 345 340, 335 345 C328 350, 312 332, 310 330 C306 320, 280 285, 280 280 Z" fill="#1c1c20" stroke="#1c1c20"/>
-        <!-- Sleeve outlines and wrinkles -->
-        <path d="M298 230 C310 245, 330 240, 345 235" fill="none" stroke="#05050a" stroke-width="2.5"/>
-        <!-- Forearm path of sleeve -->
-        <path d="M360 280 C365 300, 360 380, 370 410 C360 415, 340 405, 335 400 C325 365, 315 320, 310 330" fill="#1c1c20" stroke="#05050a"/>
-        <!-- Muscle stretch marks on sleeve -->
-        <path d="M325 295 C335 305, 350 300, 355 290" fill="none" stroke="#2a2a32" stroke-width="2"/>
-        <path d="M328 325 C340 335, 355 330, 358 315" fill="none" stroke="#2a2a32" stroke-width="2"/>
-        <path d="M320 350 C330 360, 345 355, 350 340" fill="none" stroke="#2a2a32" stroke-width="1.5"/>
-
-        <!-- LEFT FOREARM & WRISTBAND -->
-        <path d="M125 300 C100 360, 105 390, 110 410" fill="none"/>
-        <path d="M180 320 C165 360, 155 380, 150 410" fill="none"/>
-        <path d="M150 315 C135 330, 120 325, 112 330" fill="none" stroke-width="1.5" opacity="0.5"/>
-        <!-- Wristband -->
-        <path d="M110 400 L152 390 C151 405, 149 415, 148 420 L108 425 C108 415, 109 405, 110 400 Z" fill="#1c1c20"/>
-        <path d="M110 400 L152 390 C151 405, 149 415, 148 420 L108 425 Z" fill="none" stroke="#05050a"/>
-        <!-- Hand top lines -->
-        <path d="M108 425 L106 445" fill="none"/>
-        <path d="M148 420 L158 450" fill="none"/>
-        <path d="M120 422 L120 440" fill="none" stroke-width="1.5"/>
-
-        <!-- Right Hand top lines -->
-        <path d="M335 400 L335 425" fill="none"/>
-        <path d="M370 410 L380 435" fill="none"/>
-        <path d="M348 405 L350 422" fill="none" stroke-width="1.5"/>
-
-        <!-- SHORTS / WAISTBAND -->
-        <!-- V-taper obliques down to waist -->
-        <path d="M220 402 C230 425, 235 440, 245 442" fill="none" stroke-width="1.5" opacity="0.6"/>
-        <path d="M265 402 C255 425, 250 440, 248 442" fill="none" stroke-width="1.5" opacity="0.6"/>
-        
-        <!-- Shorts Base -->
-        <path d="M165 410 C190 425, 230 425, 245 423 C260 425, 280 415, 305 400 L325 500 L155 490 Z" fill="#242428"/>
-        <path d="M165 410 C190 425, 230 425, 245 423 C260 425, 280 415, 305 400" fill="none" stroke-width="3"/>
-        <path d="M305 400 L325 500" fill="none"/>
-        <path d="M165 410 L155 490" fill="none"/>
-        <!-- Center waist tie/fold -->
-        <path d="M245 423 L242 460 M245 423 L255 455" fill="none" stroke="#05050a" stroke-width="2.5"/>
-        <path d="M210 421 C220 440, 230 460, 235 480" fill="none" stroke="#111115" stroke-width="2"/>
-        <path d="M280 415 C270 435, 260 455, 255 480" fill="none" stroke="#111115" stroke-width="2"/>
-        <path d="M180 415 L190 480" fill="none" stroke="#111115" stroke-width="2"/>
-        
-        <!-- Outline pass -->
-      </g>
-    </svg>
+    <!-- ABSTRACT FORGE CORE -->
+    <div class="hero-core">
+      <div class="hc-glow"></div>
+      <div class="hc-ring"></div>
+      <div class="hc-ring r2"></div>
+      <div class="hc-ring r3"></div>
+      <svg class="hc-poly" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="rgba(200,245,66,0.05)" stroke-linejoin="round"/>
+        <polygon points="50,20 75,35 75,65 50,80 25,65 25,35" fill="rgba(200,245,66,0.1)" stroke-linejoin="round"/>
+        <line x1="50" y1="5" x2="50" y2="95"/>
+        <line x1="10" y1="25" x2="90" y2="75"/>
+        <line x1="10" y1="75" x2="90" y2="25"/>
+        <circle cx="50" cy="50" r="8" fill="currentColor"/>
+      </svg>
+    </div>
   </section>
 
   <div class="mq-wrap">
