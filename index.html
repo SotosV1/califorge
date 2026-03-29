@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CaliForge by SotosV — Build Your Body</title>
+<link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;500&family=Lilita+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;500&family=Lilita+One&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
 :root {
-  --bg:#100e0b;--bg2:#1a1612;--bg3:#221e18;--bg4:#2e271e;
-  --border:rgba(255,210,160,0.08);--border2:rgba(255,210,160,0.16);
-  --white:#f5ede0;--muted:#9a8a76;--muted2:#5a4e40;
-  --accent:#f59c2a;--accent2:#e08820;--accent-glow:rgba(245,156,42,0.15);
-  --red:#ff6b5b;
+  --bg:#05050a;--bg2:#0c0c12;--bg3:#111118;--bg4:#1a1a22;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
+  --white:#f0eee8;--muted:#6a6a72;--muted2:#3a3a42;
+  --accent:#c8f542;--accent2:#b8c234;--accent-glow:rgba(200,245,66,0.12);
+  --red:#ff4d4d;
   --fd:'Nunito',sans-serif;--fm:'Nunito Sans',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -26,7 +27,7 @@ a,button{cursor:pointer;}
 
 /* CURSOR */
 #cur{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;left:0;top:0;will-change:transform;}
-#cur-ring{position:fixed;width:38px;height:38px;border:2px solid rgba(245,156,42,0.35);border-radius:50%;pointer-events:none;z-index:9998;left:0;top:0;will-change:transform;transition:width .4s cubic-bezier(.16,1,.3,1),height .4s cubic-bezier(.16,1,.3,1),border-color .3s;}
+#cur-ring{position:fixed;width:38px;height:38px;border:2px solid rgba(200,245,66,0.35);border-radius:50%;pointer-events:none;z-index:9998;left:0;top:0;will-change:transform;transition:width .4s cubic-bezier(.16,1,.3,1),height .4s cubic-bezier(.16,1,.3,1),border-color .3s;}
 #cur-ring.hov{width:60px;height:60px;border-color:var(--accent);}
 
 /* LOADER */
@@ -52,13 +53,13 @@ nav.scrolled{background:rgba(5,5,10,.9);backdrop-filter:blur(24px);border-bottom
 .nav-links{display:flex;gap:32px;list-style:none;}
 .nav-links a{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s;position:relative;}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--accent);transition:width .35s cubic-bezier(.16,1,.3,1);}
-.nav-links a:hover{color:var(--white);}
+.nav-links a:hover{color:var(--accent);}
 .nav-links a:hover::after{width:100%;}
-.nav-cta{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--accent);border:none;border-radius:20px;padding:11px 22px;text-decoration:none;display:inline-block;position:relative;overflow:hidden;transition:all .35s;box-shadow:0 4px 14px -3px var(--accent-glow);}
-.nav-cta::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.12);opacity:0;transition:opacity .3s;}
-.nav-cta:hover{transform:scale(1.05) translateY(-2px); box-shadow:0 8px 22px -5px var(--accent-glow);}
-.nav-cta:hover::before{opacity:1;}
+.nav-cta{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid rgba(200,245,66,.3);border-radius:20px;padding:11px 22px;text-decoration:none;display:inline-block;position:relative;overflow:hidden;transition:all .35s;box-shadow:0 4px 14px -3px var(--accent-glow);}
+.nav-cta:hover{background:var(--accent);color:var(--bg);border-color:var(--accent);transform:scale(1.05) translateY(-2px); box-shadow:0 8px 22px -5px var(--accent-glow);}
 .nav-cta span{position:relative;z-index:1;}
+.nav-cta-alt{background:transparent!important;color:var(--accent)!important;border:1px solid rgba(200,245,66,.3)!important;}
+.nav-cta-alt:hover{background:var(--accent)!important;color:var(--bg)!important;border-color:var(--accent)!important;}
 
 /* ═══════════════════════════════════
    LANDING PAGE
@@ -106,8 +107,8 @@ nav.scrolled{background:rgba(5,5,10,.9);backdrop-filter:blur(24px);border-bottom
 .sec-label::before{content:'';width:20px;height:1px;background:var(--accent);}
 .about-title{font-size:clamp(30px,3.5vw,52px);font-weight:800;line-height:1.01;letter-spacing:-.02em;margin-bottom:26px;}
 .about-body{font-family:var(--fm);font-size:12px;font-weight:300;line-height:2;color:var(--muted);margin-bottom:32px;}
-.about-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid rgba(200,245,66,.3);padding-bottom:6px;transition:gap .3s,border-color .3s;}
-.about-link:hover{gap:16px;border-color:var(--accent);}
+.about-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,245,66,.3);background:transparent;padding:12px 24px;transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer;margin-top:20px;}
+.about-link:hover{background:var(--accent);color:var(--bg);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 20px -10px var(--accent-glow);}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid var(--border);background:var(--border);}
 .stat-cell{background:var(--bg2);padding:30px 26px;transition:background .35s,box-shadow .35s;border-radius:4px;}
 .stat-cell:hover{background:var(--bg3);box-shadow:inset 0 0 0 1px var(--border2);}
@@ -219,7 +220,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .opts.c1{grid-template-columns:1fr;}
 .opt-btn{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px 18px;text-align:left;transition:border-color .2s,background .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden;}
 .opt-btn:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(0,0,0,0.4);}
-.opt-btn.sel{border-color:var(--accent);background:rgba(245,156,42,.07);box-shadow:0 0 0 3px rgba(245,156,42,.12);}
+.opt-btn.sel{border-color:var(--accent);background:rgba(200,245,66,.07);box-shadow:0 0 0 3px rgba(200,245,66,.12);}
 .opt-btn.sel .ocheck{opacity:1;}
 .ocheck{position:absolute;top:11px;right:11px;width:20px;height:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;font-size:10px;color:var(--bg);font-weight:800;}
 .oicon{font-size:24px;margin-bottom:8px;display:block;}
@@ -358,7 +359,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .nut-results{display:none;}
 .nut-results.show{display:block;}
 .nut-cals-box{text-align:center;padding:28px 0 24px;border-bottom:1px solid var(--border);margin-bottom:24px;}
-.nut-cals-num{font-family:'Lilita One',cursive;font-size:clamp(70px,12vw,110px);font-weight:400;line-height:1;letter-spacing:-2px;background:linear-gradient(160deg,#ff6ec7 0%,#ff9a3c 50%,#ffe135 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(255,110,199,.4));}
+.nut-cals-num{font-family:'Lilita One',cursive;font-size:clamp(70px,12vw,110px);font-weight:400;line-height:1;letter-spacing:-2px;background:linear-gradient(160deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(200,245,66,0.3));}
 .nut-cals-unit{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-top:6px;}
 .nut-cals-bmr{font-family:var(--fm);font-size:11px;color:var(--muted2);margin-top:4px;}
 .nut-macros-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
@@ -366,8 +367,8 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .nut-macro-g{font-family:'Lilita One',cursive;font-size:36px;font-weight:400;letter-spacing:-1px;line-height:1;margin-bottom:4px;}
 .nut-macro-name{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
 .nut-macro-cal{font-family:var(--fm);font-size:10px;color:var(--muted2);}
-.nut-macro-box.prot .nut-macro-g{background:linear-gradient(150deg,#ff6b6b,#ff9a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.nut-macro-box.carb .nut-macro-g{background:linear-gradient(150deg,#ffe135,#ff9a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nut-macro-box.prot .nut-macro-g{background:linear-gradient(150deg,#ff6b6b,#f39c12);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nut-macro-box.carb .nut-macro-g{background:linear-gradient(150deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .nut-macro-box.fat .nut-macro-g{background:linear-gradient(150deg,#56ef8f,#2ecc71);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .nut-bar-wrap{margin-bottom:24px;}
 .nut-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
@@ -411,7 +412,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 /* AUTH MODAL */
 .auth-overlay{position:fixed;inset:0;background:rgba(10,8,6,.8);backdrop-filter:blur(14px);z-index:4000;display:none;align-items:center;justify-content:center;padding:20px;}
 .auth-overlay.show{display:flex;}
-.auth-modal{background:var(--bg2);backdrop-filter:blur(24px);border:1px solid var(--border2);border-radius:24px;padding:40px;width:100%;max-width:400px;position:relative;animation:authIn .5s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 80px -20px rgba(0,0,0,0.6);}
+.auth-modal{background:linear-gradient(145deg, rgba(8,8,14,0.97), rgba(4,4,8,0.99));backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.1);border-top-color:rgba(255,255,255,0.15);border-left-color:rgba(255,255,255,0.15);border-radius:24px;padding:40px;width:100%;max-width:400px;position:relative;animation:authIn .5s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 80px -20px rgba(0,0,0,0.9), inset 0 0 20px rgba(255,255,255,0.02);}
 @keyframes authIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .auth-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:22px;line-height:1;transition:color .2s;}
 .auth-close:hover{color:var(--white);}
@@ -487,6 +488,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .viewer-close:hover{color:var(--white);}
 .viewer-title{font-size:26px;font-weight:800;letter-spacing:1px;margin-bottom:6px;}
 .viewer-meta{font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+/* .about-link moved to line 113 for consolidation */
 /* save buttons in result screens */
 .save-to-dash-btn{background:rgba(200,245,66,.1);border:1px solid rgba(200,245,66,.3);border-radius:8px;padding:11px 20px;color:var(--accent);font-family:var(--fd);font-size:14px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:background .2s,color .2s;}
 .save-to-dash-btn:hover{background:var(--accent);color:var(--bg);}
@@ -520,9 +522,23 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
 .guide-example-day{color:var(--white);font-weight:400;}
 .guide-example-val{color:var(--muted);}
 .guide-cta-box{background:linear-gradient(135deg,rgba(200,245,66,.06) 0%,transparent 100%);border:1px solid rgba(200,245,66,.2);border-radius:16px;padding:36px;text-align:center;margin-top:52px;}
-.guide-cta-title{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px;}
-.guide-cta-sub{font-family:var(--fm);font-size:12px;color:var(--muted);margin-bottom:24px;}
-@media(max-width:600px){.guide-title{font-size:clamp(32px,8vw,52px);}}
+/* HERO FORGE CORE (Abstract 3D Geometric Logo) */
+.hero-core{position:absolute;right:0;bottom:120px;width:clamp(260px,35vw,460px);height:clamp(260px,35vw,460px);pointer-events:none;z-index:1;display:flex;align-items:center;justify-content:center;}
+.hc-ring{position:absolute;inset:0;border:1px solid rgba(200,245,66,.2);border-radius:50%;border-top-color:rgba(200,245,66,.8);border-bottom-color:rgba(200,245,66,.8);animation:hcSpin 20s linear infinite;}
+.hc-ring.r2{inset:20px;border-width:2px;border-color:rgba(200,245,66,.1);border-left-color:var(--accent);border-right-color:var(--accent);animation-direction:reverse;animation-duration:15s;}
+.hc-ring.r3{inset:45px;border:1px dashed rgba(200,245,66,.4);animation-duration:25s;}
+.hc-poly{position:absolute;width:60%;height:60%;color:var(--accent);filter:drop-shadow(0 0 30px rgba(200,245,66,0.3));animation:hcPulse 4s ease-in-out infinite alternate, hcSpin 30s linear infinite;}
+.hc-glow{position:absolute;inset:-50px;background:radial-gradient(circle, rgba(200,245,66,0.08) 0%, transparent 60%);z-index:-1;}
+@keyframes hcSpin{from{transform:rotate(0deg) scale(1);}to{transform:rotate(360deg) scale(1);}}
+@keyframes hcPulse{from{transform:scale(0.95) rotate(0deg);}to{transform:scale(1.05) rotate(10deg);}}
+@media(max-width:860px){.hero-core{display:none;}}
+
+/* FLOATING NUTRITION CTA */
+#floating-nut-cta{position:fixed;bottom:32px;right:32px;z-index:1000;display:flex;align-items:center;gap:12px;background:rgba(5,5,10,.8);backdrop-filter:blur(12px);border:1px solid rgba(200,245,66,.3);color:var(--accent);font-family:var(--fd);font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:14px 24px;border-radius:50px;box-shadow:0 10px 30px -5px rgba(0,0,0,0.5);cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1);opacity:1;pointer-events:all;}
+#floating-nut-cta:hover{background:var(--accent);color:var(--bg);transform:scale(1.05) translateY(-4px);box-shadow:0 15px 35px -8px var(--accent-glow);border-color:var(--accent);}
+#floating-nut-cta.hide{opacity:0;pointer-events:none;transform:translateY(20px);}
+.nut-fab-icon{font-size:18px;}
+@media(max-width:600px){#floating-nut-cta{bottom:20px;right:20px;padding:12px 20px;font-size:11px;}}
 </style>
 </head>
 <body>
@@ -545,6 +561,12 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
   <div class="l-pct" id="l-pct">000</div>
 </div>
 
+<!-- FLOATING NUTRITION CTA -->
+<button id="floating-nut-cta" onclick="goToNutrition()">
+  <span class="nut-fab-icon">🥗</span>
+  <span>Plan Your Nutrition</span>
+</button>
+
 <!-- NAV -->
 <nav id="nav">
   <a class="nav-logo" href="#" onclick="showLanding();return false;"><em>CALI</em>FORGE <span style="font-size:9px;font-weight:400;letter-spacing:.08em;color:var(--muted);text-transform:lowercase;font-family:var(--fm);">by SotosV</span></a>
@@ -554,8 +576,8 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
     <li><a href="#" onclick="navTo('goals');return false;">Goals</a></li>
   </ul>
   <div class="nav-auth-area">
-    <button class="nav-cta" style="background:transparent;color:var(--accent);border:1px solid rgba(200,245,66,.3);" onclick="goToNutrition()"><span>Nutrition</span></button>
-    <button class="nav-cta" onclick="goToQuiz()"><span>Build Program</span></button>
+    <button class="nav-cta nav-cta-alt" onclick="goToNutrition()"><span>Nutrition</span></button>
+    <button class="nav-cta" onclick="goToQuiz()"><span>Build my program</span></button>
     <!-- logged out -->
     <div id="nav-out">
       <button class="nav-login-btn" onclick="openAuth('login')">Log in</button>
@@ -613,6 +635,21 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
       <button class="h-cta" onclick="goToQuiz()"><span>Let's build it! 🚀</span><span class="h-arr">↗</span></button>
       <div class="h-scroll"><div class="s-line"></div><div class="s-txt">Scroll</div></div>
     </div>
+    <!-- ABSTRACT FORGE CORE -->
+    <div class="hero-core">
+      <div class="hc-glow"></div>
+      <div class="hc-ring"></div>
+      <div class="hc-ring r2"></div>
+      <div class="hc-ring r3"></div>
+      <svg class="hc-poly" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="rgba(200,245,66,0.05)" stroke-linejoin="round"/>
+        <polygon points="50,20 75,35 75,65 50,80 25,65 25,35" fill="rgba(200,245,66,0.1)" stroke-linejoin="round"/>
+        <line x1="50" y1="5" x2="50" y2="95"/>
+        <line x1="10" y1="25" x2="90" y2="75"/>
+        <line x1="10" y1="75" x2="90" y2="25"/>
+        <circle cx="50" cy="50" r="8" fill="currentColor"/>
+      </svg>
+    </div>
   </section>
 
   <div class="mq-wrap">
@@ -657,9 +694,10 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
         <div class="card"><div class="c-n">02/05</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><rect x="25" y="25" width="80" height="80" stroke="rgba(200,245,66,0.15)" stroke-width="1" transform="rotate(45 65 65)"/><circle cx="65" cy="10" r="4" fill="rgba(200,245,66,0.85)"/><line x1="65" y1="10" x2="65" y2="120" stroke="rgba(200,245,66,0.07)" stroke-width="1" stroke-dasharray="3 4"/></svg></div><div class="c-inner"><div class="c-tag">Goal · 02</div><div class="c-title">Handstand<br>Balance</div><div class="c-body">From hollow body holds to a solid freestanding handstand.</div></div></div>
         <div class="card"><div class="c-n">03/05</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><circle cx="24" cy="106" r="5" fill="rgba(200,245,66,0.2)"/><circle cx="50" cy="80" r="5" fill="rgba(200,245,66,0.4)"/><circle cx="80" cy="50" r="5" fill="rgba(200,245,66,0.65)"/><circle cx="106" cy="24" r="7" fill="rgba(200,245,66,1)"/><polyline points="24,106 50,80 80,50 106,24" stroke="rgba(200,245,66,0.35)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="c-inner"><div class="c-tag">Goal · 03</div><div class="c-title">General<br>Strength</div><div class="c-body">Progressive overload, bodyweight style. Real strength, no gym needed.</div></div></div>
         <div class="card"><div class="c-n">04/05</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><ellipse cx="65" cy="65" rx="48" ry="25" stroke="rgba(200,245,66,0.12)" stroke-width="1"/><ellipse cx="65" cy="65" rx="28" ry="14" stroke="rgba(200,245,66,0.2)" stroke-width="1"/><line x1="65" y1="18" x2="65" y2="40" stroke="rgba(200,245,66,0.55)" stroke-width="1.5" stroke-linecap="round"/><circle cx="65" cy="16" r="4" fill="rgba(200,245,66,0.9)"/></svg></div><div class="c-inner"><div class="c-tag">Goal · 04</div><div class="c-title">Planche &<br>Front Lever</div><div class="c-body">Advanced static skills. Precise progressions, zero shortcuts.</div></div></div>
-        <div class="card"><div class="c-n">05/05</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><path d="M65 18 L92 58 L83 106 L65 88 L47 106 L38 58 Z" stroke="rgba(200,245,66,0.25)" stroke-width="1" fill="rgba(200,245,66,0.025)" stroke-linejoin="round"/><circle cx="65" cy="65" r="3" fill="rgba(200,245,66,0.7)"/></svg></div><div class="c-inner"><div class="c-tag">Goal · 05</div><div class="c-title">Fat Loss<br>& Tone</div><div class="c-body">High-intensity circuits, minimal rest, maximum calorie burn.</div></div></div>
+        <div class="card"><div class="c-n">05/06</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><path d="M65 18 L92 58 L83 106 L65 88 L47 106 L38 58 Z" stroke="rgba(200,245,66,0.25)" stroke-width="1" fill="rgba(200,245,66,0.025)" stroke-linejoin="round"/><circle cx="65" cy="65" r="3" fill="rgba(200,245,66,0.7)"/></svg></div><div class="c-inner"><div class="c-tag">Goal · 05</div><div class="c-title">Fat Loss<br>& Tone</div><div class="c-body">High-intensity circuits, minimal rest, maximum calorie burn.</div></div></div>
+        <div class="card"><div class="c-n">06/06</div><div class="c-vis"><svg width="130" height="130" viewBox="0 0 130 130" fill="none"><path d="M30 40 L50 20 L80 20 L100 40 L100 90 L80 110 L50 110 L30 90 Z" stroke="rgba(200,245,66,0.2)" stroke-width="1"/><circle cx="65" cy="65" r="15" stroke="rgba(200,245,66,0.4)" stroke-width="1.5"/><line x1="65" y1="50" x2="65" y2="30" stroke="rgba(200,245,66,0.6)" stroke-width="2" stroke-linecap="round"/><text x="65" y="70" text-anchor="middle" font-family="DM Mono" font-size="7" fill="rgba(200,245,66,0.5)" letter-spacing="2">DIPS</text></svg></div><div class="c-inner"><div class="c-tag">Goal · 06</div><div class="c-title">Dips<br>Mastery</div><div class="c-body">Build explosive pushing power and deep tricep strength.</div></div></div>
       </div>
-      <div class="pin-prog" id="pin-prog">01 / 05</div>
+      <div class="pin-prog" id="pin-prog">01 / 06</div>
     </div>
   </div>
 
@@ -713,8 +751,8 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
     <div id="guide-content"></div>
     <div class="guide-cta-box">
       <div class="guide-cta-title">Ready to get your plan?</div>
-      <div class="guide-cta-sub">Answer 8 quick questions and your personalised program is ready in about 60 seconds 🚀</div>
-      <button class="big-btn" onclick="goToQuiz()"><span>Build My Plan!</span><span class="btn-arr">&#x2197;</span></button>
+      <div class="guide-cta-sub">Answer 9 quick questions and your personalized program is ready in about 60 seconds 🚀</div>
+      <button class="big-btn" onclick="goToQuiz()"><span>Build my plan!</span><span class="btn-arr">&#x2197;</span></button>
     </div>
   </div>
 </div>
@@ -748,6 +786,7 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
           <button class="opt-btn" data-key="goal" data-val="handstand" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">🤸</span><span class="otitle">Handstand</span><span class="odesc">Build balance and overhead strength</span></button>
           <button class="opt-btn" data-key="goal" data-val="strength" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">🏋️</span><span class="otitle">General Strength</span><span class="odesc">Get stronger and build muscle</span></button>
           <button class="opt-btn" data-key="goal" data-val="planche" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">⚡</span><span class="otitle">Planche / Front Lever</span><span class="odesc">Advanced static skills</span></button>
+          <button class="opt-btn" data-key="goal" data-val="dips" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">💪</span><span class="otitle">Dips Mastery</span><span class="odesc">Explosive pushing power</span></button>
           <button class="opt-btn" data-key="goal" data-val="lose_fat" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">🔥</span><span class="otitle">Lose Fat + Tone</span><span class="odesc">High intensity, burn calories</span></button>
           <button class="opt-btn" data-key="goal" data-val="beginner" onclick="pick(this)"><span class="ocheck">✓</span><span class="oicon">🌱</span><span class="otitle">Complete Beginner</span><span class="odesc">Start from scratch the right way</span></button>
         </div>
@@ -785,13 +824,12 @@ footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-i
       <!-- Step 4 -->
       <div class="qstep" id="qs-4">
         <div class="q-title">How many dips can you do?</div>
-        <div class="q-sub">Parallel bars, full range of motion.</div>
+        <div class="q-sub">Strict, full range of motion dips.</div>
         <div class="opts c1">
-          <button class="opt-btn" data-key="dips" data-val="0" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">0 — Can't do one yet</span><span class="odesc">Need to build base pushing strength</span></button>
-          <button class="opt-btn" data-key="dips" data-val="1-5" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">1–5 reps</span><span class="odesc">Just getting started</span></button>
-          <button class="opt-btn" data-key="dips" data-val="6-12" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">6–12 reps</span><span class="odesc">Decent strength base</span></button>
-          <button class="opt-btn" data-key="dips" data-val="13-20" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">13–20 reps</span><span class="odesc">Strong relative strength</span></button>
-          <button class="opt-btn" data-key="dips" data-val="20+" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">20+ reps</span><span class="odesc">Advanced — ready for ring/weighted dips</span></button>
+          <button class="opt-btn" data-key="dips" data-val="0" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">0 — Can't do one yet</span><span class="odesc">Need to build tricep and chest base</span></button>
+          <button class="opt-btn" data-key="dips" data-val="1-5" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">1–5 reps</span><span class="odesc">Building foundational power</span></button>
+          <button class="opt-btn" data-key="dips" data-val="6-12" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">6–12 reps</span><span class="odesc">Good pushing strength</span></button>
+          <button class="opt-btn" data-key="dips" data-val="12+" onclick="pick(this)"><span class="ocheck">✓</span><span class="otitle">12+ reps</span><span class="odesc">Ready for weighted or explosive dips</span></button>
         </div>
         <div class="q-nav"><button class="btn-back" onclick="ps(4)">← Back</button><button class="btn-next" id="n4" disabled onclick="ns(4)">NEXT →</button></div>
       </div>
@@ -1084,9 +1122,9 @@ function mkp(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*
 for(let i=0;i<85;i++)pts.push(mkp());
 (function drawp(){
   ctx2.clearRect(0,0,W,H);
-  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx2.beginPath();ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);ctx2.fillStyle=`rgba(245,156,42,${p.a*.25})`;ctx2.fill();});
-  pts.forEach(p=>{const d=Math.hypot(p.x-cx,p.y-cy);if(d<150){ctx2.beginPath();ctx2.moveTo(p.x,p.y);ctx2.lineTo(cx,cy);ctx2.strokeStyle=`rgba(245,156,42,${(1-d/150)*.08})`;ctx2.lineWidth=.5;ctx2.stroke();}});
-  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<85){ctx2.beginPath();ctx2.moveTo(pts[i].x,pts[i].y);ctx2.lineTo(pts[j].x,pts[j].y);ctx2.strokeStyle=`rgba(245,156,42,${(1-d/85)*.06})`;ctx2.lineWidth=.4;ctx2.stroke();}}
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx2.beginPath();ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);ctx2.fillStyle=`rgba(200,245,66,${p.a*.2})`;ctx2.fill();});
+  pts.forEach(p=>{const d=Math.hypot(p.x-cx,p.y-cy);if(d<150){ctx2.beginPath();ctx2.moveTo(p.x,p.y);ctx2.lineTo(cx,cy);ctx2.strokeStyle=`rgba(200,245,66,${(1-d/150)*.07})`;ctx2.lineWidth=.5;ctx2.stroke();}});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<85){ctx2.beginPath();ctx2.moveTo(pts[i].x,pts[i].y);ctx2.lineTo(pts[j].x,pts[j].y);ctx2.strokeStyle=`rgba(200,245,66,${(1-d/85)*.05})`;ctx2.lineWidth=.4;ctx2.stroke();}}
   requestAnimationFrame(drawp);
 })();
 
@@ -1171,6 +1209,7 @@ function goToQuiz(){
     .call(()=>{
       document.getElementById('landing').style.display='none';
       document.getElementById('quiz-page').style.display='block';
+      document.getElementById('floating-nut-cta').classList.remove('hide');
       window.scrollTo(0,0);
     })
     .to(wipe,{scaleY:0,transformOrigin:'top',duration:.4,ease:'power3.inOut'});
@@ -1187,6 +1226,7 @@ function showLanding(){
       document.getElementById('dashboard-page').style.display='none';
       document.getElementById('guide-page').style.display='none';
       document.getElementById('landing').style.display='block';
+      document.getElementById('floating-nut-cta').classList.remove('hide');
       window.scrollTo(0,0);
     })
     .to(wipe,{scaleY:0,transformOrigin:'top',duration:.4,ease:'power3.inOut'});
@@ -1199,7 +1239,10 @@ function goToNutrition(){
     .call(()=>{
       document.getElementById('landing').style.display='none';
       document.getElementById('quiz-page').style.display='none';
+      document.getElementById('dashboard-page').style.display='none';
+      document.getElementById('guide-page').style.display='none';
       document.getElementById('nutrition-page').style.display='block';
+      document.getElementById('floating-nut-cta').classList.add('hide');
       window.scrollTo(0,0);
     })
     .to(wipe,{scaleY:0,transformOrigin:'top',duration:.4,ease:'power3.inOut'});
@@ -1308,7 +1351,6 @@ async function generateMealPlan(){
     document.getElementById('meal-plan-error').style.display='block';
     return;
   }
-  if(!checkQuota()) return;
   document.getElementById('meal-plan-btn').style.display='none';
   document.getElementById('meal-plan-loading').style.display='block';
   document.getElementById('meal-plan-error').style.display='none';
@@ -1375,7 +1417,6 @@ Day Total: [X] kcal | [X]g protein | [X]g carbs | [X]g fat
     if(!resp.ok) throw new Error(data.error?.message||'API error '+resp.status);
     const text=data.choices?.[0]?.message?.content||'';
     if(!text) throw new Error('No response from API');
-    incQuota();
     renderMealPlan(text);
   }catch(err){
     document.getElementById('meal-plan-loading').style.display='none';
@@ -1445,33 +1486,11 @@ function parseMacroLine(line){
   return html;
 }
 
-/* API SECURITY & LIMITING */
-const _GK = 'S1l3UHJoTnBKT0QxWGJpN2ZCZjdMZ3VhWUYzYnlkR1dvczdXT1V2Mm42ZlRqMThVemt3Sl9rc2c=';
-let _lr = 0; // last request
-const _limit = 5;
-
-function getKey(){ return atob(_GK).split('').reverse().join(''); } // Simple obfuscation: Base64 + Reverse
-function checkKey(){ document.getElementById('key-prompt').style.display='none'; }
+/* API KEY - hardcoded */
+const GROQ_API_KEY='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';
+function getKey(){return GROQ_API_KEY;}
+function checkKey(){document.getElementById('key-prompt').style.display='none';}
 function saveKey(){}
-
-function checkQuota(){
-  const now = Date.now();
-  if(now - _lr < 30000 && _lr > 0) { alert('Please wait 30s between AI generations to protect your credits.'); return false; }
-  const today = new Date().toDateString();
-  const usage = JSON.parse(localStorage.getItem('_cf_usage') || '{"date":"","count":0}');
-  if(usage.date !== today){ usage.date = today; usage.count = 0; }
-  if(usage.count >= _limit){ alert(`Daily limit reached (${_limit} generations). This is to protect your API credits. Come back tomorrow!`); return false; }
-  return true;
-}
-
-function incQuota(){
-  _lr = Date.now();
-  const today = new Date().toDateString();
-  const usage = JSON.parse(localStorage.getItem('_cf_usage') || '{"date":"","count":0}');
-  if(usage.date !== today) usage.count = 0;
-  usage.date = today; usage.count++;
-  localStorage.setItem('_cf_usage', JSON.stringify(usage));
-}
 
 /* ?? QUIZ STATE ?? */
 const answers={goal:null,pushups:null,pullups:null,dips:null,location:null,days:null,duration:null,limitations:[],extra:''};
@@ -1514,43 +1533,37 @@ function ps(from){
 }
 
 /* ?? LABEL MAPS ?? */
-const goalLabels={muscle_up:'Muscle-up',handstand:'Handstand',strength:'General Strength',planche:'Planche / Front Lever',lose_fat:'Fat Loss + Tone',beginner:'Beginner Foundation'};
+const goalLabels={muscle_up:'Muscle-up',handstand:'Handstand',strength:'General Strength',planche:'Planche / Front Lever',dips:'Dips Mastery',lose_fat:'Fat Loss + Tone',beginner:'Beginner Foundation'};
 const locLabels={home_none:'Home (no equipment)',home_bar:'Home + Pull-up bar',park:'Park / Outdoor',gym:'Gym (full equipment)',hybrid:'Hybrid',rings:'Gymnastic rings'};
 
 /* ?? BUILD PROMPT ?? */
 function buildPrompt(){
   const lims=answers.limitations.length>0?answers.limitations.join(', '):'none';
   const extra=document.getElementById('extra').value.trim();
-  return `You are an expert calisthenics coach specializing in the CaliForged (Tim Vuu) training style. Create a detailed, personalized calisthenics training program based on this person's profile:
+  return `You are an expert calisthenics coach. Create a detailed, personalized calisthenics training program based on this person's profile:
 
 GOAL: ${goalLabels[answers.goal]}
 PUSH-UPS (max unbroken): ${answers.pushups} reps
 PULL-UPS (strict, unassisted): ${answers.pullups} reps
-DIPS (parallel bar): ${answers.dips} reps
+DIPS (full range of motion): ${answers.dips} reps
 TRAINING LOCATION/EQUIPMENT: ${locLabels[answers.location]}
 DAYS PER WEEK: ${answers.days} days
 SESSION LENGTH: ${answers.duration} minutes
 INJURIES/LIMITATIONS: ${lims}
 ADDITIONAL INFO: ${extra||'None provided'}
 
-TRAINING PHILOSOPHY (CaliForged Style):
-1. STERN FORM: Emphasize full range of motion, scapular control, and strict execution. No kipping or partial reps.
-2. SKILL PRE-REQUISITES: Ensure the user builds the necessary base strength (e.g., strong pull-ups and dips) before attempting advanced skills like muscle-ups or planche.
-3. PROGRESSION PATHS: Use specific progressions like Bench Dips -> Parallel Bar Dips -> Ring/Weighted Dips.
-4. FORGE MENTALITY: Focus on the "Forge your body" aesthetic and mindset — building a functional, aesthetic, and powerful physique.
-
-Structure your response with:
+Create a complete, realistic program. Structure your response with:
 
 ## Program Overview
 ## Weekly Schedule
 ## Session Breakdown
-For each session: exercises with sets x reps and a brief coaching note.
+For each session: exercises with sets ? reps and a brief coaching note.
 ## Progression Plan
 5 phases from current level to goal with realistic timeframes.
 ## Key Rules
-3-5 non-negotiables for this program to work.
+3?5 non-negotiables for this program to work.
 
-Be direct, honest, and specific. If the goal requires prerequisites, state them clearly. Factor in injuries. If Type 1 Diabetes is listed, include blood sugar management notes. No fluff.`;
+Be direct, honest, and specific. If goal requires prerequisites (like pull-ups before muscle-ups), say so clearly. Factor in injuries. If Type 1 Diabetes is listed, include blood sugar management notes. No fluff.`;
 }
 
 /* ?? GENERATE ?? */
@@ -1563,7 +1576,6 @@ async function generate(){
     document.getElementById('err-box').classList.add('show');
     return;
   }
-  if(!checkQuota()) return;
   document.getElementById('err-box').classList.remove('show');
   document.getElementById('quiz-body').style.display='none';
   document.getElementById('loading-state').classList.add('show');
@@ -1579,7 +1591,6 @@ async function generate(){
     if(data.error){throw new Error(data.error.message||'API error');}
     const text=data.choices?.[0]?.message?.content||'';
     if(!text)throw new Error('No response');
-    incQuota();
     showResult(text);
   }catch(err){
     document.getElementById('loading-state').classList.remove('show');
@@ -1591,13 +1602,13 @@ async function generate(){
 
 function showResult(text){
   lastProgText=text;
-  lastProgMeta={title:(goalLabels[answers.goal]||'Program')+' Program',goal:goalLabels[answers.goal],location:locLabels[answers.location],days:answers.days,duration:answers.duration,pullups:answers.pullups,pushups:answers.pushups,dips:answers.dips};
+  lastProgMeta={title:(goalLabels[answers.goal]||'Program')+' Program',goal:goalLabels[answers.goal],location:locLabels[answers.location],days:answers.days,duration:answers.duration,pullups:answers.pullups,pushups:answers.pushups};
   document.getElementById('save-prog-btn').textContent='Save Program';
   document.getElementById('save-prog-btn').disabled=false;
   document.getElementById('loading-state').classList.remove('show');
   document.getElementById('result-state').classList.add('show');
   document.getElementById('res-title').textContent=(goalLabels[answers.goal]||'YOUR').toUpperCase()+' PROGRAM';
-  document.getElementById('res-meta').innerHTML=`<span>• ${goalLabels[answers.goal]}</span><span>• ${locLabels[answers.location]}</span><span>• ${answers.days} days/week</span><span>• ${answers.duration} min</span><span>• ${answers.pullups} pullups</span><span>• ${answers.dips} dips</span>`;
+  document.getElementById('res-meta').innerHTML=`<span>? ${goalLabels[answers.goal]}<\/span><span>? ${locLabels[answers.location]}<\/span><span>? ${answers.days} days/week<\/span><span>? ${answers.duration} min<\/span><span>? ${answers.pullups} pull-ups<\/span>`;
   document.getElementById('prog-out').innerHTML=renderMD(text);
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1619,7 +1630,7 @@ function renderMD(md){
 }
 
 function restart(){
-  Object.assign(answers,{goal:null,pushups:null,pullups:null,dips:null,location:null,days:null,duration:null,limitations:[],extra:''});
+  Object.assign(answers,{goal:null,pushups:null,pullups:null,location:null,days:null,duration:null,limitations:[],extra:''});
   step=1;
   document.getElementById('result-state').classList.remove('show');
   document.getElementById('loading-state').classList.remove('show');
@@ -1628,8 +1639,8 @@ function restart(){
   document.getElementById('qs-1').classList.add('active');
   document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('sel'));
   document.querySelectorAll('.btn-next').forEach(b=>b.disabled=true);
+  document.getElementById('n7').disabled=false;
   document.getElementById('n8').disabled=false;
-  document.getElementById('n9').disabled=false;
   document.getElementById('extra').value='';
   document.getElementById('err-box').classList.remove('show');
   renderProg();
@@ -1707,8 +1718,9 @@ function goToDashboard(){
   gsap.timeline()
     .to(wipe,{scaleY:1,duration:.5,ease:'power3.inOut'})
     .call(()=>{
-      ['landing','quiz-page','nutrition-page'].forEach(id=>document.getElementById(id).style.display='none');
+      ['landing','quiz-page','nutrition-page','guide-page'].forEach(id=>document.getElementById(id).style.display='none');
       document.getElementById('dashboard-page').style.display='block';
+      document.getElementById('floating-nut-cta').classList.remove('hide');
       window.scrollTo(0,0);
       loadDashboard();
     })
@@ -2001,6 +2013,7 @@ function openGuide(key){
     .call(()=>{
       ['landing','quiz-page','nutrition-page','dashboard-page'].forEach(id=>document.getElementById(id).style.display='none');
       document.getElementById('guide-page').style.display='block';
+      document.getElementById('floating-nut-cta').classList.remove('hide');
       window.scrollTo(0,0);
     })
     .to(wipe,{scaleY:0,transformOrigin:'top',duration:.4,ease:'power3.inOut'});
